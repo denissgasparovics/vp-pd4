@@ -15,8 +15,15 @@ namespace Lab2.DataAccess
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Documents\\Work\\Lab2\\Lab2.DataAccess\\OrderDb.mdf;Integrated Security=True");
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        {
+            if (optionsBuilder.IsConfigured)
+            {
+                return;
+            }
+
+            optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Documents\\Work\\Lab2\\Lab2.DataAccess\\OrderDb.mdf;Integrated Security=True");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
